@@ -84,8 +84,8 @@ distclean: clean
 
 # install Eigen library locally
 EIGEN_DIR	= eigen3
-EIGEN_TGZ	= eigen-3.2.2.tar.gz
-EIGEN_URL	= http://bitbucket.org/eigen/eigen/get/3.2.2.tar.gz
+EIGEN_TGZ	= eigen-3.2.10.tar.gz
+EIGEN_URL	= https://ipolcore.ipol.im/static/jyotsna/eigen-3.2.10.tar.gz
 
 eigen: $(EIGEN_DIR)
 $(EIGEN_TGZ):
@@ -97,7 +97,7 @@ $(EIGEN_DIR):	$(EIGEN_TGZ)
 	tar xfz $< -C $@ --strip-components=1
 
 BM3D_DIR	= bm3d
-BM3D_URL	= http://www.ipol.im/pub/art/2012/l-bm3d/bm3d_src.zip
+BM3D_URL	= https://ipolcore.ipol.im/static/jyotsna/bm3d_src.zip
 BM3D_ZIP	= bm3d_src.zip
 
 ipolbm3d: $(BM3D_DIR)
