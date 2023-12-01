@@ -8,11 +8,13 @@ WORKDIR $bin
 COPY . .
 
 #run make file and copy the binary
+WORKDIR $bin/src
 RUN make
+RUN cp denoise $bin
 
-#compile imscript code
-WORKDIR $bin/src/bm3d/bm3d_src
-RUN cp .. $bin/src/bm3d
+WORKDIR $bin/src-1
+RUN make -f makefile.gcc
+RUN cp imdiff $bin
 
 # the execution will happen in the folder /workdir/exec
 # it will be created by IPOL

@@ -96,18 +96,12 @@ $(EIGEN_DIR):	$(EIGEN_TGZ)
 	mkdir $@
 	tar xfz $< -C $@ --strip-components=1
 
-BM3D_DIR	= bm3d
-BM3D_URL	= https://ipolcore.ipol.im/static/jyotsna/bm3d_src.zip
-BM3D_ZIP	= bm3d_src.zip
-
-ipolbm3d: $(BM3D_DIR)
-$(BM3D_ZIP):
-	wget -q -O $@ $(BM3D_URL)
-
-$(BM3D_DIR): $(BM3D_ZIP)
-	$(RM) -r $@
-	mkdir $@
-	unzip $< -d $@
+bm3d:
+	@if [ ! -d bm3d ]; then \
+	wget -q -O bm3d_src.tar.gz http://www.ipol.im/pub/art/2012/l-bm3d/bm3d_src.tar.gz; \
+	tar xfz bm3d_src.tar.gz ; \
+	mv bm3d_src bm3d; \
+	rm -rf bm3d_src bm3d_src.tar.gz; fi
 
 # code dependencies
 
