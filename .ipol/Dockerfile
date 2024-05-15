@@ -11,7 +11,7 @@ COPY . .
 
 WORKDIR $bin/src
 # Define the list of sigma values
-ARG SIGMA_VALUES="10 25 30"
+ARG SIGMA_VALUES="10 25 35"
 
 # Copy the source file for each sigma value, compile, and rename output
 RUN for sigma in $SIGMA_VALUES; do \
