@@ -8,13 +8,23 @@ WORKDIR $bin
 COPY . .
 
 #run make file and copy the binary
+
 WORKDIR $bin/src
-RUN make
-RUN cp denoise $bin
+# Define the list of sigma values
+ARG SIGMA_VALUES="10 25 30"
+
+# Copy the source file for each sigma value, compile, and rename output
+RUN for sigma in $SIGMA_VALUES; do \
+        cp NeuralStruct.cpp.$sigma NeuralStruct.cpp && \
+        make denoise && \
+        mv denoise denoise_$sigma; \
+    done && \
+    cp denoise_* $bin
 
 WORKDIR $bin/src-1
 RUN make -f makefile.gcc
 RUN cp imdiff $bin
+
 
 # the execution will happen in the folder /workdir/exec
 # it will be created by IPOL

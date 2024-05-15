@@ -23,7 +23,7 @@ def merge_files(input_files, output_file):
                 output.write(f"{RMSE.upper()} : {data_RMSE}\n")
 
 # Denoise image
-subprocess.run(['denoise', '-c', 'input_0.png'])
+subprocess.run(['denoise_'+str(args.sigma), '-c', 'input_0.png'])
 
 # Compute image differences
 subprocess.run(['imdiff', 'clean.png', 'nn.png', 'diffnn.png'])
