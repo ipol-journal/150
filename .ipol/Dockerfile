@@ -22,7 +22,7 @@ RUN for sigma in $SIGMA_VALUES; do \
     cp denoise_* $bin
 
 WORKDIR $bin/src-1
-RUN make -f makefile.gcc
+RUN make -f makefile.gcc CXX='ccache c++' -j4
 RUN cp imdiff $bin
 
 
