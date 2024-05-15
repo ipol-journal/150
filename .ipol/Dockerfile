@@ -16,7 +16,7 @@ ARG SIGMA_VALUES="10 25 35"
 # Copy the source file for each sigma value, compile, and rename output
 RUN for sigma in $SIGMA_VALUES; do \
         cp NeuralStruct.cpp.$sigma NeuralStruct.cpp && \
-        make denoise -j4 -C && \
+        make denoise -j4 && \
         mv denoise denoise_$sigma; \
     done && \
     cp denoise_* $bin
