@@ -16,13 +16,13 @@ ARG SIGMA_VALUES="10 25 35"
 # Copy the source file for each sigma value, compile, and rename output
 RUN for sigma in $SIGMA_VALUES; do \
         cp NeuralStruct.cpp.$sigma NeuralStruct.cpp && \
-        make denoise && \
+        make denoise -j4 -C -f makefile && \
         mv denoise denoise_$sigma; \
     done && \
     cp denoise_* $bin
 
 WORKDIR $bin/src-1
-RUN make -f makefile.gcc CXX='ccache c++' -j4
+RUN make -C -f makefile.gcc CXX='ccache c++' -j4
 RUN cp imdiff $bin
 
 
